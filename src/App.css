@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css?family=Lustria');
+
+.App {
+}
+
+.logo{
+  z-index: 2;
+
+  position: fixed;
+
+  width: 10vh;
+  height: 10vh;
+
+  font-family: Lustria;
+  font-size: 100px;
+
+  color: gold;
+  background-color: transparent;
+
+  border: 5px solid red;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  user-select: none;
+}
+
+.logo:hover{
+  background-color: red;
+}
+
+.info{
+  z-index: 1;
+
+  position: fixed;
+
+  font-family: Lustria;
+
+  color: gold;
+  background-color: transparent;
+
+  user-select: none;
+  border: 0px solid red;
+
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+
+  text-align: justify;
+}
+
+.loader{
+  width: 100px;
+  height: 100px;
+}
+
+.item{
+  border: 0px solid red;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image{
+  transition: 1s all;
+  opacity: 0;
+}
+
+@media(orientation: landscape){
+  .info{
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 15vh;
+
+    width: 75vw;
+    font-size: 10vh;
+
+    text-align: left;
+    color:red;
+  }
+
+  .logo{
+    right: 50px;
+    top: 50px;
+  }
+
+  .item{
+    width: 100vw;
+  }
+
+  .image{
+    width: 100vw;
+    height: auto;
+  }
+}
+
+@media(orientation: portrait){
+  .info{
+    left: 50%;
+    transform: translateX(-50%);
+    top: 5vh;
+    width: 75vw;
+    height: 80vh;
+
+    word-break: break-all;
+    font-size: 9.5vh;
+    overflow: hidden;
+
+    color: red;
+  }
+
+  .logo{
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 5vh;
+  }
+
+  .item{
+    height: 100vh;
+  }
+
+  .image{
+    height: 100vh;
+    width: auto;
+  }
+}
