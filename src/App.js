@@ -7,8 +7,10 @@ import items from './Items.json'
 const DEFAULT = {
   logo: 'mf',
   info: [
-    'Graphics and space developer, walking on the blockchain.',
-    'hello@maximflorian.com 0049 01590 100 50 85',
+    'Graphics programmer and space developer, walking on the blockchain.',
+    'hello@maximflorian.com',
+    '0049 01590 100 50 85',
+    '0x5c5736CC67D0a2F84a0b77DB1fE4A6579BbeE78A',
     ''
   ],
   loader: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif'
@@ -108,7 +110,7 @@ export default class App extends Component {
   handleInfo(event){
     event.preventDefault();
     this.setState({
-      logo: this.state.logo<DEFAULT.logo.length?this.state.logo+1:0
+      logo: this.state.logo<DEFAULT.logo.length+1?this.state.logo+1:0
     })
   }
 
