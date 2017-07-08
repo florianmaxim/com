@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Lustria');
 
-.App {}
+.App {
+  overflow: hidden;
+}
 
 .logo{
   z-index: 2;
@@ -159,7 +161,6 @@
   .item{
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
   }
 
   .image{
