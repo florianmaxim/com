@@ -7,6 +7,7 @@ import items from './Items.json'
 const DEFAULT = {
   logo: 'mf',
   info: [
+    '',
     'Graphics programmer and space developer, walking on the blockchain.',
     'hello@maximflorian.com',
     '0049 01590 100 50 85',
