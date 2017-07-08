@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lustria');
 
-.App {
-}
+.App {}
 
 .logo{
   z-index: 2;
@@ -50,11 +49,9 @@
   text-align: justify;
 }
 
-
-
 .loader{
-  width: 10vh;
-  height: 10vh;
+  width: 100px;
+  height: 100px;
 
   color: gold;
 
@@ -72,6 +69,30 @@
   animation-timing-function: linear;
 }
 
+.item{
+  border: 0px solid red;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: red;
+
+  overflow: hidden;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+.image{
+  display: none;
+  opacity: 0;
+  transition: 2s all;
+}
+
 @keyframes spin{
   0% {
     transform: rotateZ(0deg) scale(1);
@@ -84,28 +105,6 @@
   }
 }
 
-
-
-.item{
-  border: 0px solid red;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background-color: black;
-
-  overflow: hidden;
-}
-
-.image{
-  transition: 1s all;
-  opacity: 0;
-}
-
 @media(orientation: landscape){
   .info{
     left: 50%;
@@ -116,7 +115,6 @@
     font-size: 10vh;
 
     text-align: left;
-    color:red;
   }
 
   .logo{
@@ -125,12 +123,13 @@
   }
 
   .item{
-    width: 100vw;
     height: 100vh;
+    width: 100vw;
   }
 
   .image{
-    height: 100vh;
+    height: auto;
+    width: 150vw;
   }
 }
 
@@ -145,8 +144,6 @@
     word-break: break-all;
     font-size: 9.5vh;
     overflow: hidden;
-
-    color: red;
   }
 
   .logo{
@@ -157,10 +154,11 @@
 
   .item{
     height: 100vh;
+    width: 100vw;
   }
 
   .image{
-    height: 100vh;
+    height: 150vh;
     width: auto;
   }
 }

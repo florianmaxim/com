@@ -36,11 +36,6 @@ export default class App extends Component {
     window.addEventListener('resize', (event) => {
       this.updateViewport();
     })
-    window.addEventListener('load', (event) => {
-      this.setState({
-        loaded: true
-      })
-    })
   }
 
   updateViewport() {
@@ -57,7 +52,17 @@ export default class App extends Component {
 
     this.updateViewport();
 
-    this.state.items[index][1] = true;
+    let _loaded = index===0?true:this.state.loaded;
+
+    let _items = this.state.items;
+        _items[index][1] = true;
+
+    this.setState({
+      loaded: _items,
+      items: _items
+    })
+
+    this.forceUpdate();
   }
 
   setItems(items){
@@ -68,15 +73,19 @@ export default class App extends Component {
 
         const isLoaded = items[index][1];
 
-        if(inView && isLoaded){
-            return <div key={index} className="item"><img className="image" alt={item[0]} src={item[0]} style={{opacity:'1', display: 'block'}}/></div>
+        if(inView){
+            if(isLoaded){
+                return <div key={index} className="item"><img className="image" alt={item[0]} src={item[0]} style={{opacity:'1', display: 'block'}} onLoad={(event)=>{this.handleOnLoad(event,index)}}/></div>
+            }else{
+                return(
+                    <div key={index} className="item">
+                      <div className="loader"/>
+                      <img className="image" alt={item[0]} src={item[0]} style={{opacity:'0', display: 'none'}} onLoad={(event)=>{this.handleOnLoad(event,index)}}/>
+                  </div>
+                );
+            }
         }else{
-            return(
-              <div key={index} className="item">
-                <div className="loader"/>
-                <img className="image" alt={item[0]} src={item[0]} style={{opacity:'0', display: 'none'}} onLoad={(event)=>{this.handleOnLoad(event,index)}}/>
-              </div>
-            );
+          return  <div className="item" key={index}/>
         }
 
       })
