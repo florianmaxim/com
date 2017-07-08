@@ -25,10 +25,6 @@
   user-select: none;
 }
 
-.logo:hover{
-  background-color: red;
-}
-
 .info{
   z-index: 1;
 
@@ -54,10 +50,41 @@
   text-align: justify;
 }
 
+
+
 .loader{
-  width: 100px;
-  height: 100px;
+  width: 10vh;
+  height: 10vh;
+
+  color: gold;
+
+  border: 5px solid gold;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  user-select: none;
+
+  animation-name: spin;
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+  animation-delay: 0;
+  animation-timing-function: linear;
 }
+
+@keyframes spin{
+  0% {
+    transform: rotateZ(0deg) scale(1);
+  }
+  50% {
+    transform: rotateZ(180deg) scale(1.25);
+  }
+  100% {
+    transform: rotateZ(360deg) scale(1);
+  }
+}
+
+
 
 .item{
   border: 0px solid red;
@@ -68,6 +95,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background-color: black;
+
+  overflow: hidden;
 }
 
 .image{
@@ -95,11 +126,11 @@
 
   .item{
     width: 100vw;
+    height: 100vh;
   }
 
   .image{
-    width: 100vw;
-    height: auto;
+    height: 100vh;
   }
 }
 

@@ -18,6 +18,7 @@ export default class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      loaded: false,
       logo: DEFAULT.logo,
       info: 0,
       items: items.items
@@ -35,6 +36,11 @@ export default class App extends Component {
     window.addEventListener('resize', (event) => {
       this.updateViewport();
     })
+    window.addEventListener('load', (event) => {
+      this.setState({
+        loaded: true
+      })
+    })
   }
 
   updateViewport() {
@@ -46,20 +52,31 @@ export default class App extends Component {
     });
   }
 
+  handleOnLoad(event, index){
+    event.preventDefault();
+
+    this.updateViewport();
+
+    this.state.items[index][1] = true;
+  }
+
   setItems(items){
     return(
       items.map((item, index) => {
 
-        const inView = this.state.viewport.top>=(index-1)*this.state.viewport.height
+        const inView = this.state.viewport.top>=(index-1)*this.state.viewport.height;
 
-        if(inView){
-          return (
-            <div key={index} className="item"><img className="image" alt={item[0]} style={{opacity: '1'}} src={item[0]} /></div>
-          );
+        const isLoaded = items[index][1];
+
+        if(inView && isLoaded){
+            return <div key={index} className="item"><img className="image" alt={item[0]} src={item[0]} style={{opacity:'1', display: 'block'}}/></div>
         }else{
-          return (
-            <div key={index} className="item"><img className="image" alt={item[0]} style={{opacity: '0'}} src={item[0]} /></div>
-          );
+            return(
+              <div key={index} className="item">
+                <div className="loader"/>
+                <img className="image" alt={item[0]} src={item[0]} style={{opacity:'0', display: 'none'}} onLoad={(event)=>{this.handleOnLoad(event,index)}}/>
+              </div>
+            );
         }
 
       })
@@ -67,6 +84,7 @@ export default class App extends Component {
   }
 
   setLogo(logo){
+    if(!this.state.loaded) return;
     return(
       <div className="logo" onClick={(event)=>{this.handleInfo(event)}}>{}</div>
     )
