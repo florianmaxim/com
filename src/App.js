@@ -7,6 +7,7 @@ import items from './Items.json'
 let DEFAULT = {
   logo: 'mf',
   info: [
+    '',
     'Graphics programmer and space developer, walking on the blockchain.',
     'hello@maximflorian.com',
     '0049 01590 100 50 85',
@@ -19,6 +20,15 @@ export default class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      _mounted: false,
+
+      viewport: {
+        top: 0,
+        height: 0
+      },
+
+      length: 0,
+
       loaded: false,
       logo: DEFAULT.logo,
 
@@ -37,8 +47,14 @@ export default class App extends Component {
   }
 
   componentDidMount(){
-    window.addEventListener('scroll', (event) => {
 
+    this.setState({
+      //Once in a lifetime set the initial window height
+      length: !this.state._mounted?window.innerHeight:this.state.length,
+      _mounted: true
+    })
+
+    window.addEventListener('scroll', (event) => {
       this.updateViewport();
 
       let _itemPointer  = (this.state.viewport.top/this.state.viewport.height).toFixed(0);
@@ -60,50 +76,68 @@ export default class App extends Component {
       viewport: {
         top: window.pageYOffset,
         height: window.innerHeight
-      }
+      },
     });
   }
 
   handleOnLoad(event, index){
     event.preventDefault();
 
-    this.updateViewport();
-
     let _items = this.state.items;
         _items[index][1] = true;
 
+    let _length = this.state.length+window.innerHeight;
+
     this.setState({
       loaded: _items[index][1],
-      items: _items
-    })
+      items: _items,
 
+      length: _length
+    })
   }
 
   setItems(){
     return(
       this.state.items.map((item, index) => {
 
-        const inView = this.state.viewport.top>=(index)*this.state.viewport.height;
-
+        const inView   = this.state.viewport.top>=(index)*this.state.viewport.height;
         const isLoaded = this.state.items[index][1];
-
-
 
         if(inView){
             console.log('item '+index+' is in view');
+
             if(isLoaded){
-                console.log('item '+index+' is loaded');
-                return <div key={index} className="item"><img className="image" alt={item[0]} src={item[0]} style={{opacity:'1', display: 'block'}} onLoad={(event)=>{this.handleOnLoad(event,index)}}/></div>
-            }else{
-                return(
-                    <div key={index} className="item">
-                      <div className="loader"/>
-                      <img className="image" alt={item[0]} src={item[0]} style={{opacity:'0', display: 'none'}} onLoad={(event)=>{this.handleOnLoad(event,index)}}/>
+              console.log('item '+index+' is loaded');
+              return(
+                  <div key={index} className="item">
+
+                      <img style={{opacity:'1'}} className="image" alt={item[0]} src={item[0]} />
+
+                      <div className="loader" style={{opacity:'0'}} />
+
                   </div>
-                );
+                )
+            }else{
+              console.log('loading item '+index);
+              return(
+                  <div key={index} className="item">
+
+                      <img style={{opacity:'0'}} className="image" alt={item[0]} src={item[0]}  onLoad={(event)=>{this.handleOnLoad(event,index)}}/>
+
+                      <div className="loader"  style={{opacity:'1'}} />
+
+                  </div>
+              );
             }
+
         }else{
-          return  <div className="item" key={index}/>
+          if(isLoaded){
+            return(
+                <div key={index} className="item">
+                  <img className="image" alt={item[0]} src={item[0]} style={{opacity:'0'}}/>
+                </div>
+              )
+          }
         }
       })
     );
@@ -117,7 +151,7 @@ export default class App extends Component {
   }
 
   setInfo(info){
-    return <div className="info"><a href={this.state.itemPointer!==0?this.state.items[this.state.itemPointer][3]:'https://maximflorian.com'} target="_blank">{this.state.info[this.state.infoPointer]}</a></div>
+    return <div className="info">{DEFAULT.info[this.state.infoPointer]}</div>
   }
 
   handleInfo(event){
@@ -126,15 +160,9 @@ export default class App extends Component {
     })
   }
 
-  handleItem(event){
-    this.setState({
-      infoPointer: this.state.infoPointer<DEFAULT.info.length?this.state.infoPointer+1:0
-    })
-  }
-
   render() {
     return (
-      <div className="App">
+      <div className="App" style={{height: this.state.length+'px'}}>
         {this.setLogo(this.state.logo)}
         {this.setItems()}
         {this.setInfo(this.state.info)}
