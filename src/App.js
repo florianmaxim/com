@@ -4,17 +4,15 @@ import './App.css';
 
 import items from './Items.json'
 
-const DEFAULT = {
+let DEFAULT = {
   logo: 'mf',
   info: [
-    '',
     'Graphics programmer and space developer, walking on the blockchain.',
     'hello@maximflorian.com',
     '0049 01590 100 50 85',
     '0x5c5736CC67D0a2F84a0b77DB1fE4A6579BbeE78A',
     ''
-  ],
-  loader: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif'
+  ]
 }
 
 export default class App extends Component {
@@ -23,8 +21,14 @@ export default class App extends Component {
     this.state = {
       loaded: false,
       logo: DEFAULT.logo,
-      info: 0,
-      items: items.items
+
+      items: items.items,
+
+      item: items.items[0],
+      itemPointer: 0,
+
+      info: DEFAULT.info,
+      infoPointer: 0
     }
   }
 
@@ -34,7 +38,17 @@ export default class App extends Component {
 
   componentDidMount(){
     window.addEventListener('scroll', (event) => {
+
       this.updateViewport();
+
+      let _itemPointer  = (this.state.viewport.top/this.state.viewport.height).toFixed(0);
+      let _item     = this.state.items[_itemPointer];
+
+      this.setState({
+        itemPointer: _itemPointer,
+        item: _item,
+      });
+
     })
     window.addEventListener('resize', (event) => {
       this.updateViewport();
@@ -90,7 +104,6 @@ export default class App extends Component {
         }else{
           return  <div className="item" key={index}/>
         }
-
       })
     );
   }
@@ -103,15 +116,18 @@ export default class App extends Component {
   }
 
   setInfo(info){
-    return(
-      <div className="info">{DEFAULT.info[this.state.logo]}</div>
-    )
+    return <div className="info"><a href={this.state.itemPointer!==0?this.state.items[this.state.itemPointer][3]:'https://maximflorian.com'} target="_blank">{this.state.info[this.state.infoPointer]}</a></div>
   }
 
   handleInfo(event){
-    event.preventDefault();
     this.setState({
-      logo: this.state.logo<DEFAULT.logo.length+1?this.state.logo+1:0
+      infoPointer: this.state.infoPointer<DEFAULT.info.length?this.state.infoPointer+1:0
+    })
+  }
+
+  handleItem(event){
+    this.setState({
+      infoPointer: this.state.infoPointer<DEFAULT.info.length?this.state.infoPointer+1:0
     })
   }
 
