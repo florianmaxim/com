@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Lustria');
-@import url('https://fonts.googleapis.com/css?family=Cinzel');
-@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 a {
   text-decoration: none;
@@ -31,6 +29,8 @@ a {
 
   user-select: none;
   cursor: pointer;
+
+  transition: .125s all;
 }
 
 .info{
@@ -76,13 +76,12 @@ a {
   animation-delay: 0;
   animation-timing-function: linear;
 
-  transition: .75s all;
-
   z-index: 10;
   position: fixed;
   left: 45vw;
   top: 45vh;
 
+  transition: 1s all;
 }
 
 .item{

@@ -8,7 +8,7 @@ let DEFAULT = {
   logo: 'mf',
   info: [
     '',
-    'Graphics programmer and space developer, walking on the blockchain.',
+    'I am a virtual space developer, walking on the blockchain.',
     'hello@maximflorian.com',
     '0049 01590 100 50 85',
     '0x5c5736CC67D0a2F84a0b77DB1fE4A6579BbeE78A',
@@ -19,18 +19,21 @@ export default class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+
       _mounted: false,
+      _loading: false,
+      _allLoaded: false,
 
       viewport: {
         top: 0,
         height: 0
       },
 
-      displayUpTo:0,
+      scrollDirection: 'down',
 
       length: 0,
 
-      loaded: false,
+
       logo: DEFAULT.logo,
 
       items: items.items,
@@ -73,32 +76,38 @@ export default class App extends Component {
   }
 
   updateViewport() {
-    let inCenter = ((this.state.viewport.top/this.state.viewport.height)-this.state.itemPointer).toFixed(1)
 
-    if(inCenter>=0.5)
-      console.error('NOW')
+   this.setState({
+     scrollDirection: this.state.viewport.top>window.pageYOffset?'up':'down',
 
-    this.setState({
       viewport: {
         top: window.pageYOffset,
         height: window.innerHeight
       },
+
     });
+
   }
 
   handleOnLoad(event, index){
     event.preventDefault();
 
     let _items = this.state.items;
+        //Set loaded flag
         _items[index][1] = true;
 
-    let _length = this.state.length+window.innerHeight;
+    let _length = index<this.state.items.length-1?this.state.length+window.innerHeight:this.state.items.length;
+
+    let _allLoaded = index===this.state.items.length-1?true:this.state._allLoaded;
 
     this.setState({
-      loaded: _items[index][1],
+
       items: _items,
 
-      length: _length
+      length: _length,
+
+     _loading: false,
+     _allLoaded: _allLoaded
     })
   }
 
@@ -106,15 +115,14 @@ export default class App extends Component {
     return(
       this.state.items.map((item, index) => {
 
-        //TODO put this into words
-        const inView   = this.state.viewport.top>=(index*this.state.viewport.height)-this.state.viewport.height/2;
+        const inView   = this.state.viewport.top>=(index*this.state.viewport.height)-this.state.viewport.height*.75;
         const isLoaded = this.state.items[index][1];
 
         if(inView){
-            console.log('item '+index+' is in view');
+            // console.log('item '+index+' is in view');
 
             if(isLoaded){
-              console.log('item '+index+' is loaded');
+              // console.log('loaded item '+index);
               return(
                   <div key={index} className="item">
 
@@ -125,7 +133,8 @@ export default class App extends Component {
                   </div>
                 )
             }else{
-              console.log('loading item '+index);
+              // console.log('loading item '+index);
+              this.state._loading=true; //TODO This is not pretty
               return(
                   <div key={index} className="item">
 
@@ -141,7 +150,7 @@ export default class App extends Component {
           if(isLoaded){
             return(
                 <div key={index} className="item">
-                  <img className="image" alt={item[0]} src={item[0]} style={{opacity:'1'}}/>
+                  <img className="image" alt={item[0]} src={item[0]} style={{opacity:'0'}}/>
                 </div>
               )
           }
@@ -150,14 +159,11 @@ export default class App extends Component {
     );
   }
 
-  setLogo(logo){
-    if(!this.state.loaded) return;
-    return(
-      <div className="logo" onClick={(event)=>{this.handleInfo(event)}}>{}</div>
-    )
+  setLogo(){
+    return <div className="logo" style={{opacity: this.state._loading?'0':'1'}} onClick={(event)=>{this.handleInfo(event)}}>{}</div>
   }
 
-  setInfo(info){
+  setInfo(){
     return <div className="info">{DEFAULT.info[this.state.infoPointer]}</div>
   }
 
@@ -171,9 +177,9 @@ export default class App extends Component {
   render() {
     return (
       <div className="App" style={{height: this.state.length+'px'}}>
-        {this.setLogo(this.state.logo)}
+        {this.setLogo()}
         {this.setItems()}
-        {this.setInfo(this.state.info)}
+        {this.setInfo()}
       </div>
     );
   }
