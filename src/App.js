@@ -100,7 +100,7 @@ export default class App extends Component {
     return(
       this.state.items.map((item, index) => {
 
-        const inView   = this.state.viewport.top>=(index)*this.state.viewport.height;
+        const inView   = this.state.viewport.top>=(index)*(this.state.viewport.height/2);
         const isLoaded = this.state.items[index][1];
 
         if(inView){
