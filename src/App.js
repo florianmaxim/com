@@ -83,12 +83,16 @@ export default class App extends Component {
     return(
       this.state.items.map((item, index) => {
 
-        const inView = this.state.viewport.top>=(index-1)*this.state.viewport.height;
+        const inView = this.state.viewport.top>=(index)*this.state.viewport.height;
 
         const isLoaded = this.state.items[index][1];
 
+
+
         if(inView){
+            console.log('item '+index+' is in view');
             if(isLoaded){
+                console.log('item '+index+' is loaded');
                 return <div key={index} className="item"><img className="image" alt={item[0]} src={item[0]} style={{opacity:'1', display: 'block'}} onLoad={(event)=>{this.handleOnLoad(event,index)}}/></div>
             }else{
                 return(
