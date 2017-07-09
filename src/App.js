@@ -27,6 +27,8 @@ export default class App extends Component {
         height: 0
       },
 
+      displayUpTo:0,
+
       length: 0,
 
       loaded: false,
@@ -72,6 +74,11 @@ export default class App extends Component {
   }
 
   updateViewport() {
+    let inCenter = ((this.state.viewport.top/this.state.viewport.height)-this.state.itemPointer).toFixed(1)
+
+    if(inCenter>=0.5)
+      console.error('NOW')
+
     this.setState({
       viewport: {
         top: window.pageYOffset,
@@ -100,7 +107,8 @@ export default class App extends Component {
     return(
       this.state.items.map((item, index) => {
 
-        const inView   = this.state.viewport.top>=(index)*(this.state.viewport.height/2);
+        //TODO put this into words
+        const inView   = this.state.viewport.top>=(index*this.state.viewport.height)-this.state.viewport.height/2;
         const isLoaded = this.state.items[index][1];
 
         if(inView){
