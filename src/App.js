@@ -134,7 +134,7 @@ export default class App extends Component {
           if(isLoaded){
             return(
                 <div key={index} className="item">
-                  <img className="image" alt={item[0]} src={item[0]} style={{opacity:'0'}}/>
+                  <img className="image" alt={item[0]} src={item[0]} style={{opacity:'1'}}/>
                 </div>
               )
           }
