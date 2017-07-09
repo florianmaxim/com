@@ -163,6 +163,7 @@ export default class App extends Component {
   }
 
   handleInfo(event){
+    event.preventDefault();
     this.setState({
       infoPointer: this.state.infoPointer<DEFAULT.info.length?this.state.infoPointer+1:0
     })
