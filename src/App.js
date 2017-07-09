@@ -12,7 +12,6 @@ let DEFAULT = {
     'hello@maximflorian.com',
     '0049 01590 100 50 85',
     '0x5c5736CC67D0a2F84a0b77DB1fE4A6579BbeE78A',
-    ''
   ]
 }
 
@@ -165,7 +164,7 @@ export default class App extends Component {
   handleInfo(event){
     event.preventDefault();
     this.setState({
-      infoPointer: this.state.infoPointer<DEFAULT.info.length?this.state.infoPointer+1:0
+      infoPointer: this.state.infoPointer<DEFAULT.info.length-1?this.state.infoPointer+1:0
     })
   }
 
