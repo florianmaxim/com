@@ -69,26 +69,23 @@ export default class App extends Component {
 
     this.updateViewport();
 
-    let _loaded = index===0?true:this.state.loaded;
-
     let _items = this.state.items;
         _items[index][1] = true;
 
     this.setState({
-      loaded: _items,
+      loaded: _items[index][1],
       items: _items
     })
 
-    this.forceUpdate();
   }
 
-  setItems(items){
+  setItems(){
     return(
-      items.map((item, index) => {
+      this.state.items.map((item, index) => {
 
         const inView = this.state.viewport.top>=(index-1)*this.state.viewport.height;
 
-        const isLoaded = items[index][1];
+        const isLoaded = this.state.items[index][1];
 
         if(inView){
             if(isLoaded){
@@ -135,7 +132,7 @@ export default class App extends Component {
     return (
       <div className="App">
         {this.setLogo(this.state.logo)}
-        {this.setItems(this.state.items)}
+        {this.setItems()}
         {this.setInfo(this.state.info)}
       </div>
     );
