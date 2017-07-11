@@ -2,7 +2,21 @@ import React, { Component } from 'react';
 
 import './App.css';
 
-import items from './Items.json'
+import gold from './Gold.json';
+import items from './Default.json';
+import balls from './Balls.json';
+
+let ROUTES = [
+  "default",
+  "gold",
+  "balls"
+]
+
+let ITEMS = [
+  items,
+  gold,
+  balls
+]
 
 let DEFAULT = {
   logo: 'mf',
@@ -18,6 +32,7 @@ let DEFAULT = {
 export default class App extends Component {
   constructor(props){
     super(props);
+
     this.state = {
 
       _mounted: false,
@@ -36,10 +51,11 @@ export default class App extends Component {
 
       logo: DEFAULT.logo,
 
+      itemPointer: 0,
+
       items: items.items,
 
       item: items.items[0],
-      itemPointer: 0,
 
       info: DEFAULT.info,
       infoPointer: 0
@@ -47,12 +63,18 @@ export default class App extends Component {
   }
 
   componentWillMount(){
+
     this.updateViewport();
+
   }
 
   componentDidMount(){
 
+    let _index = ROUTES.indexOf(this.props.match.params.id);
+    let _items = _index!==-1?ITEMS[_index].items:items.items;
+
     this.setState({
+      items: _items,
       //Once in a lifetime set the initial window height
       length: !this.state._mounted?window.innerHeight:this.state.length,
       _mounted: true
