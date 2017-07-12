@@ -9,12 +9,14 @@ import balls from './Balls.json';
 let ROUTES = [
   "default",
   "gold",
+  "ball",
   "balls"
 ]
 
 let ITEMS = [
   items,
   gold,
+  balls,
   balls
 ]
 
