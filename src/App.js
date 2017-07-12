@@ -5,19 +5,22 @@ import './App.css';
 import gold from './Gold.json';
 import items from './Default.json';
 import balls from './Balls.json';
+import parabowl from './Parabowl.json';
 
 let ROUTES = [
   "default",
   "gold",
   "ball",
-  "balls"
+  "balls",
+  "parabowl"
 ]
 
 let ITEMS = [
   items,
   gold,
   balls,
-  balls
+  balls,
+  parabowl
 ]
 
 let DEFAULT = {
