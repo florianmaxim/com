@@ -1,12 +1,12 @@
 {
   "items":[
-  ["static/images/sm/4.jpg", false, "Targold", "https://tar.gold"],
-  ["static/images/sm/5.jpg", false, "Targold", "https://tar.gold"],
-  ["static/images/sm/7.jpg", false, "Targold", "https://tar.gold"],
-  ["static/images/sm/8.jpg", false, "Targold", "https://tar.gold"],
-  ["static/images/sm/11.jpg", false, "Parabowl", "https://parabowl.com"],
-  ["static/images/sm/14.jpg", false, "Spacegames", "https://space.games"],
-  ["static/images/sm/15.jpg", false, "Spacegames", "https://space.games"],
-  ["static/images/sm/9.jpg", false, "Spacegames", "https://space.games"]
+  ["static/images/4.jpg", false, "Targold", "https://tar.gold"],
+  ["static/images/5.jpg", false, "Targold", "https://tar.gold"],
+  ["static/images/7.jpg", false, "Targold", "https://tar.gold"],
+  ["static/images/8.jpg", false, "Targold", "https://tar.gold"],
+  ["static/images/11.jpg", false, "Parabowl", "https://parabowl.com"],
+  ["static/images/14.jpg", false, "Spacegames", "https://space.games"],
+  ["static/images/15.jpg", false, "Spacegames", "https://space.games"],
+  ["static/images/9.jpg", false, "Spacegames", "https://space.games"]
   ]
 }
