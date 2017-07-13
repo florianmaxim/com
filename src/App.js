@@ -24,7 +24,7 @@ let ITEMS = [
 ]
 
 let DEFAULT = {
-  logo: 'mf',
+  signature: 'mf',
   info: [
     '',
     'I am a virtual space developer, walking on the blockchain.',
@@ -43,6 +43,8 @@ export default class App extends Component {
       _mounted: false,
       _loading: false,
       _allLoaded: false,
+
+      _signature: false,
 
       viewport: {
         top: 0,
@@ -190,6 +192,10 @@ export default class App extends Component {
     return <div className="logo" style={{opacity: this.state._loading?'0':'1'}} onClick={(event)=>{this.handleInfo(event)}}>{}</div>
   }
 
+  setSig(){
+    return <div className="signature" style={{opacity: this.state._signature?'1':'0'}}>{DEFAULT.signature}</div>
+  }
+
   setInfo(){
     return <div className="info">{DEFAULT.info[this.state.infoPointer]}</div>
   }
@@ -204,6 +210,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App" style={{height: this.state.length+'px'}}>
+        {this.setSig()}
         {this.setLogo()}
         {this.setItems()}
         {this.setInfo()}

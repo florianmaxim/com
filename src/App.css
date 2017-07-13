@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lustria');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
 
 a {
   text-decoration: none;
@@ -6,6 +6,17 @@ a {
 }
 
 .App{
+}
+
+.signature{
+  position: fixed;
+  left:5vh;
+  top:2.5vh;
+  z-index: 1000;
+  color:transparent;
+  font-size: 40pt;
+  font-family: Playfair Display;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
 }
 
 .logo{
