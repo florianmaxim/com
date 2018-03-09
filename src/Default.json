@@ -1,9 +1,20 @@
 {
   "items":[
+  ["static/images/xgold-screen-1.jpg", false, "Targold", "https://xgold.cc"],
+  ["static/images/xgold-screen-2.jpg", false, "Targold", "https://xgold.cc"],
+  ["static/images/xgold-screen-3.jpg", false, "Targold", "https://xgold.cc"],
+  
+  ["static/images/xgold-screen-4.png", false, "Targold", "https://xgold.cc"],
+  ["static/images/xgold-screen-5.png", false, "Targold", "https://xgold.cc"],
+
+  ["static/images/xgold-screen-8.png", false, "Targold", "https://xgold.cc"],
+  ["static/images/xgold-screen-7.png", false, "Targold", "https://xgold.cc"], 
+  
   ["static/images/4.jpg", false, "Targold", "https://tar.gold"],
   ["static/images/5.jpg", false, "Targold", "https://tar.gold"],
   ["static/images/7.jpg", false, "Targold", "https://tar.gold"],
   ["static/images/8.jpg", false, "Targold", "https://tar.gold"],
+
   ["static/images/11.jpg", false, "Parabowl", "https://parabowl.com"],
   ["static/images/14.jpg", false, "Spacegames", "https://space.games"],
   ["static/images/15.jpg", false, "Spacegames", "https://space.games"],
