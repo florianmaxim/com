@@ -27,10 +27,9 @@ let DEFAULT = {
   signature: 'mf',
   info: [
     '',
-    'I am a virtual space developer, walking on the blockchain.',
+    'I am a digital artist and virtual space developer, walking on the blockchain.',
     'hello@maximflorian.com',
-    '0049 01590 100 50 85',
-    '0x5c5736CC67D0a2F84a0b77DB1fE4A6579BbeE78A',
+    '0049 0151 186 58 98 6',
   ]
 }
 
