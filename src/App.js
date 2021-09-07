@@ -29,7 +29,7 @@ let DEFAULT = {
     '',
     'I am a digital artist and virtual space developer, walking on the blockchain.',
     'hello@maximflorian.com',
-    '0049 0151 186 58 98 6',
+    '+49 176 415 600 60',
   ]
 }
 
